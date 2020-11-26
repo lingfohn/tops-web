@@ -9,7 +9,9 @@
 //   // get my info
 //   UserInfo: '/user/info',
 // }
-import * as auth from './users/users'
+import * as auth from './auth/users'
+import * as cicd from './cicd/cicd'
 export default {
   auth,
+  cicd,
 }
