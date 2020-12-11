@@ -16,4 +16,4 @@ export const setDocumentTitle = function (title) {
   }
 }
 
-export const domTitle = 'Tops? auto : ops'
+export const domTitle = 'Cirrus? auto : ops'

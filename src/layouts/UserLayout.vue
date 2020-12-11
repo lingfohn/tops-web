@@ -2,7 +2,7 @@
   <div id="userLayout" :class="['user-layout-wrapper', device]">
     <div class="container">
       <div class="top">
-        <h1 class="title">TOPS 运维系统</h1>
+        <h1 class="title">Cirrus 运维系统</h1>
         <p class="desc">给时光以生命，而不是给生命以时光</p>
       </div>
       <route-layout />

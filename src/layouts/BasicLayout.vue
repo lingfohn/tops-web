@@ -88,7 +88,6 @@ export default {
   },
   created() {
     const menus = openPermission ? this.mainMenu : syncRouterMap
-    console.log('menus=>', menus)
     this.menus = menus.find((item) => item.path === '/').children
     this.collapsed = !this.sidebarOpened
   },

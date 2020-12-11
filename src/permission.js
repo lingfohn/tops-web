@@ -21,7 +21,6 @@ router.beforeEach((to, from, next) => {
   if (openPermission && !store.getters.multiTabList.includes(to.fullPath)) {
     NProgress.start() // 开始加重进度条
   }
-  console.log(to)
   to.meta && typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} - ${domTitle}`)
 
   // 请求带有 redirect 重定向时，登录自动重定向到该地址

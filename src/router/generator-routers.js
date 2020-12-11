@@ -61,7 +61,6 @@ export const generatorDynamicRouter = (token) => {
         const result = res.data
         let childrenNav = []
         childrenNav = generator2(result)
-        console.log(childrenNav)
         const menuNav = []
         rootRouter.children.push(defaultRoot)
         rootRouter.children = rootRouter.children.concat(childrenNav)
@@ -90,11 +89,12 @@ export const generatorDynamicRouter = (token) => {
 
 export const generator2 = (routeMap) => {
   return routeMap.map((item) => {
-    const { title, name, redirect, keepAlive, icon, path } = item
+    const { title, name, redirect, keepAlive, icon, path, show } = item
     const currentRoute = {
       path: path,
       name: name,
       redirect: redirect,
+      hidden: !show,
       component: constantRouterComponents[item.component] || (() => import(`@/views/${item.component}`)),
       meta: {
         title: title,

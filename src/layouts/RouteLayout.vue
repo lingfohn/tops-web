@@ -1,7 +1,5 @@
 <template>
-  <keep-alive :exclude="excludeViews">
-    <router-view :key="key" />
-  </keep-alive>
+  <router-view :key="key" />
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-drawer
-      title="新建应用"
+      title="新建实例"
       :width="720"
       :visible="visible"
       :header-style="{ height: '64px', boxShadow: '0 1px 1px #ddd' }"
@@ -11,21 +11,10 @@
       <a-form :form="form" layout="vertical" hide-required-mark>
         <a-spin :spinning="confirmLoading">
           <a-row :gutter="16">
-            <a-col :span="12">
-              <a-form-item label="项目">
-                <a-select
-                  show-search
-                  :filter-option="filterOption"
-                  v-decorator="['projectId', { rules: [{ required: true, message: '请选择所属项目' }] }]"
-                  placeholder="选择所属项目"
-                >
-                  <a-select-option v-for="i in projects" :value="i.id" :key="i.id">{{ i.projectName }}</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
-            <a-col :span="12">
-              <a-form-item label="支持灰度发布">
-                <a-switch v-decorator="['multi', { initialValue: true, valuePropName: 'checked' }]" />
+            <a-col :span="24">
+              <a-form-item label="实例名">
+                <a-input v-decorator="['name', { rules: [{ required: true, message: '请选择所属项目' }] }]" placeholder="请输入实例名，例如K1.34.5">
+                </a-input>
               </a-form-item>
             </a-col>
           </a-row>
@@ -65,6 +54,7 @@ export default {
   data() {
     return {
       form: this.$form.createForm(this),
+      app: {},
       advance: false,
       redirect: false,
       visible: false,
@@ -76,10 +66,10 @@ export default {
     }
   },
   methods: {
-    showDrawer() {
+    showDrawer(app) {
       this.visible = true
       this.confirmLoading = false
-      this.getProject()
+      this.app = app
     },
     getProject() {
       api.cicd.getProjects().then((resp) => {
@@ -121,8 +111,7 @@ export default {
             //   this.form.resetFields()
             // })
           } else {
-            value.namespaceId = 1
-            api.cicd.createApplication(value).then((resp) => {
+            api.cicd.createInstance(this.app.id, value).then((resp) => {
               this.visible = false
               this.confirmLoading = false
               this.$emit('ok', value)

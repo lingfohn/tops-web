@@ -121,6 +121,7 @@ export default {
   },
   mounted() {
     this.getList()
+    console.log('mount menu List')
   },
 }
 </script>
